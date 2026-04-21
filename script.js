@@ -1,5 +1,6 @@
-const themeToggle = document.querySelector(".theme-toggle");
-const themeLabel = document.querySelector(".theme-label");
+document.documentElement.classList.add("js");
+
+const themeToggles = document.querySelectorAll(".theme-toggle");
 let storedTheme = "light";
 
 try {
@@ -11,24 +12,33 @@ try {
 document.documentElement.dataset.theme = storedTheme;
 
 const updateThemeToggle = () => {
-  if (!themeToggle || !themeLabel) {
-    return;
-  }
-
   const isDark = document.documentElement.dataset.theme === "dark";
-  themeLabel.textContent = isDark ? "Light" : "Dark";
-  themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
+
+  themeToggles.forEach((toggle) => {
+    const label = toggle.querySelector(".theme-label");
+
+    if (label) {
+      label.textContent = isDark ? "Light" : "Dark";
+    }
+
+    toggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
+    toggle.setAttribute("aria-pressed", String(isDark));
+  });
 };
 
-themeToggle?.addEventListener("click", () => {
-  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = nextTheme;
-  try {
-    localStorage.setItem("theme", nextTheme);
-  } catch {
-    // The visual toggle should still work when storage is unavailable.
-  }
-  updateThemeToggle();
+themeToggles.forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = nextTheme;
+
+    try {
+      localStorage.setItem("theme", nextTheme);
+    } catch {
+      // The visual toggle should still work when storage is unavailable.
+    }
+
+    updateThemeToggle();
+  });
 });
 
 updateThemeToggle();

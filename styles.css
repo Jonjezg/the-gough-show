@@ -8,6 +8,7 @@
   --orange-strong: #b94714;
   --orange-soft: rgba(255, 106, 42, 0.12);
   --orange-line: rgba(255, 106, 42, 0.36);
+  --on-accent: #171412;
   --pink: #ff5aa5;
   --yellow: #ffe15b;
   --soft: rgba(255, 248, 238, 0.58);
@@ -30,6 +31,7 @@
   --orange-strong: #ffb086;
   --orange-soft: rgba(255, 106, 42, 0.18);
   --orange-line: rgba(255, 106, 42, 0.5);
+  --on-accent: #171412;
   --soft: rgba(255, 243, 231, 0.07);
   --surface: rgba(38, 29, 25, 0.78);
   --surface-soft: rgba(38, 29, 25, 0.7);
@@ -66,13 +68,35 @@ a {
   text-decoration: none;
 }
 
+:where(a, button):focus-visible {
+  outline: 3px solid var(--orange-line);
+  outline-offset: 0.25rem;
+}
+
 main {
   width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
   padding-bottom: 4rem;
 }
 
-[data-reveal] {
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(1.35rem);
   transition:
@@ -81,7 +105,7 @@ main {
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-[data-reveal].is-visible {
+.js [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -162,6 +186,21 @@ main {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+:root:not(.js) .site-nav {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+:root:not(.js) .menu-toggle,
+:root:not(.js) .theme-toggle {
+  display: none;
 }
 
 .site-nav a,
@@ -395,6 +434,7 @@ main {
   bottom: 23%;
   left: 7%;
   background: var(--yellow);
+  color: var(--on-accent);
   transform: rotate(-2deg);
   animation-delay: 780ms;
 }
@@ -411,6 +451,7 @@ main {
   bottom: 8%;
   right: 4%;
   background: var(--pink);
+  color: var(--on-accent);
   transform: rotate(5deg);
   animation-delay: 1460ms;
 }
@@ -419,7 +460,7 @@ main {
   top: 4%;
   right: 18%;
   background: var(--orange);
-  color: var(--cream);
+  color: var(--on-accent);
   transform: rotate(3deg);
   animation-delay: 1800ms;
 }
@@ -519,7 +560,7 @@ main {
 }
 
 .work-card a:focus-visible {
-  outline: 2px solid var(--orange-line);
+  outline: 3px solid var(--orange-line);
   outline-offset: 0.35rem;
 }
 
@@ -824,7 +865,7 @@ main {
 
 .experience-date {
   margin-bottom: 0.55rem;
-  color: var(--orange);
+  color: var(--orange-strong);
   font-weight: 600;
 }
 
@@ -887,7 +928,7 @@ main {
 
 .education-date {
   margin-bottom: 0.55rem;
-  color: var(--orange);
+  color: var(--orange-strong);
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -1092,7 +1133,7 @@ main {
 
 .project-facts dt {
   margin-bottom: 0.55rem;
-  color: var(--project-accent);
+  color: var(--orange-strong);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;

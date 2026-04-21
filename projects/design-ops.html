@@ -6,8 +6,10 @@
     <title>Turning UX Leadership into Measurable Growth | Jonathan Gough</title>
     <script>
       try {
+        document.documentElement.classList.add("js");
         document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
       } catch {
+        document.documentElement.classList.add("js");
         document.documentElement.dataset.theme = "light";
       }
     </script>
@@ -23,7 +25,7 @@
     <div class="project-shell">
       <div class="project-topbar">
         <a class="back-link" href="../index.html#work">Back to work</a>
-        <button class="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
           <span class="theme-icon" aria-hidden="true"></span>
           <span class="theme-label">Dark</span>
         </button>

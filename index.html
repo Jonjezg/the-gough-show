@@ -10,8 +10,10 @@
     />
     <script>
       try {
+        document.documentElement.classList.add("js");
         document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
       } catch {
+        document.documentElement.classList.add("js");
         document.documentElement.dataset.theme = "light";
       }
     </script>
@@ -23,7 +25,8 @@
     />
     <link rel="stylesheet" href="styles.css?v=20260421-theme" />
   </head>
-  <body>
+  <body id="top">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
       <div class="site-header-inner">
         <a class="brand" href="#top" aria-label="Jon Gough home">
@@ -31,7 +34,7 @@
           <span>Jon Gough</span>
         </a>
         <div class="header-actions">
-          <button class="theme-toggle" type="button" aria-label="Switch to dark mode">
+          <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
             <span class="theme-icon" aria-hidden="true"></span>
             <span class="theme-label">Dark</span>
           </button>
@@ -51,7 +54,7 @@
       </div>
     </header>
 
-    <main id="top">
+    <main id="main-content">
       <section class="hero">
         <div class="hero-copy">
           <p class="status-pill">Service design and UX leadership for complex public services</p>
