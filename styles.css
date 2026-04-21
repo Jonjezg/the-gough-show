@@ -800,7 +800,7 @@ main {
   gap: 1rem;
   margin-top: 3rem;
   padding: 2rem 0 0;
-  border-top: 1px solid rgba(255, 106, 42, 0.22);
+  border-top: 1px solid rgba(255, 106, 42, 0.34);
   color: var(--muted);
   font-size: 0.9rem;
 }
