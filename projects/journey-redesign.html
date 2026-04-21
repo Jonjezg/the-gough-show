@@ -4,17 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Building Sustainable UX Capability | Jonathan Gough</title>
+    <script>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+      } catch {
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css?v=20260421-animations" />
+    <link rel="stylesheet" href="../styles.css?v=20260421-theme" />
   </head>
   <body class="project-page project-warm">
     <div class="project-shell">
-      <a class="back-link" href="../index.html#work">Back to work</a>
+      <div class="project-topbar">
+        <a class="back-link" href="../index.html#work">Back to work</a>
+        <button class="theme-toggle" type="button" aria-label="Switch to dark mode">
+          <span class="theme-icon" aria-hidden="true"></span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </div>
       <article class="project-case">
         <header class="project-hero">
           <div class="project-symbol visual-blocks" aria-hidden="true">
@@ -117,6 +130,6 @@
         </nav>
       </article>
     </div>
-    <script src="../script.js?v=20260421-animations"></script>
+    <script src="../script.js?v=20260421-theme"></script>
   </body>
 </html>

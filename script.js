@@ -1,3 +1,38 @@
+const themeToggle = document.querySelector(".theme-toggle");
+const themeLabel = document.querySelector(".theme-label");
+let storedTheme = "light";
+
+try {
+  storedTheme = localStorage.getItem("theme") || "light";
+} catch {
+  storedTheme = document.documentElement.dataset.theme || "light";
+}
+
+document.documentElement.dataset.theme = storedTheme;
+
+const updateThemeToggle = () => {
+  if (!themeToggle || !themeLabel) {
+    return;
+  }
+
+  const isDark = document.documentElement.dataset.theme === "dark";
+  themeLabel.textContent = isDark ? "Light" : "Dark";
+  themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
+};
+
+themeToggle?.addEventListener("click", () => {
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = nextTheme;
+  try {
+    localStorage.setItem("theme", nextTheme);
+  } catch {
+    // The visual toggle should still work when storage is unavailable.
+  }
+  updateThemeToggle();
+});
+
+updateThemeToggle();
+
 const revealItems = document.querySelectorAll("[data-reveal]");
 
 if ("IntersectionObserver" in window) {
